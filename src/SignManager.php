@@ -34,7 +34,7 @@ class SignManager
 
     public function getSignString($signData)
     {
-        if (is_string($signData)) {
+        if (!is_array($signData)) {
             return $signData;
         }
 
