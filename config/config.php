@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'default' => 'hmac',
+    'signer' => 'hmac',
 
     'hmac' => [
         'algo' => env('SIGNATURE_HMAC_ALGO', 'sha1'),

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace Liyu\Signature\Signer;
 
 class HMAC
 {
@@ -18,7 +18,7 @@ class HMAC
      */
     protected $algo;
 
-    public function __construct($key, $algo = 'sha1')
+    public function __construct($key = null, $algo = 'sha1')
     {
         $this->key = $key;
         $this->algo = $algo;

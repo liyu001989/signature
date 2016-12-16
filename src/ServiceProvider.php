@@ -34,13 +34,25 @@ class ServiceProvider extends LaravelServiceProvider
 
     protected function register()
     {
-        $this->app->bind(['Liyu\\Signature\\Signature' => 'signature'], function ($app) {
-            $signer = new Signature();
+        $this->app->bind(['Liyu\\Signature\\SignManager' => 'signature'], function ($app) {
+            $signerName = config('signature.signer');
+            // TODO not good
+            switch ($driver) {
+                case 'hmac':
+                default:
+                    $signer = new Liyu\Signature\Signer\HMAC();
+                    if ($algo = config('signature'.$signerName)) {
+                        $signer->setAlgo($algo);
+                    }
+                break;
+            }
+
+            return new SignManager($signer);
         });
     }
 
     public function providers()
     {
-        return ['signature' => 'Liyu\\Signature\\Signature'];
+        return ['signature' => 'Liyu\\Signature\\SignManager'];
     }
 }
