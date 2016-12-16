@@ -2,7 +2,9 @@
 
 namespace Liyu\Signature\Signer;
 
-class HMAC
+use Liyu\Signature\Contracts\Signer;
+
+class HMAC implements Signer
 {
     /**
      * key for sign.

@@ -2,7 +2,7 @@
 
 namespace Liyu\Signature\Contracts;
 
-interface Signature
+interface Signer
 {
     public function sign($signString);
 

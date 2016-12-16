@@ -2,11 +2,13 @@
 
 namespace Liyu\Signature;
 
+use Liyu\Signature\Contracts\Signer;
+
 class SignManager
 {
     protected $signer;
 
-    public function __construct($signer)
+    public function __construct(Signer $signer)
     {
         $this->signer = $signer;
     }
