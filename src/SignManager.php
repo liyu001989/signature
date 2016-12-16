@@ -38,20 +38,28 @@ class SignManager
             return $signData;
         }
 
-        // 去除空值
-        $params = array_filter($signData);
-
-        ksort($params);
-
-        $signParams = [];
-
-        // 拼接为key=value&key1=value1
+        $params = $this->multiksort($signData);
+        // key=value&key1=value1
         foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                $value = json_encode($value);
+            }
             $signParams[] = $key.'='.$value;
         }
 
-        // 使用&链接参数
         return implode('&', $signParams);
+    }
+
+    protected function multiksort(&$params)
+    {
+        if (is_array($params)) {
+            $params = array_filter($params);
+
+            ksort($params);
+            array_walk($params, [$this, 'multiksort']);
+        }
+
+        return $params;
     }
 
     public function __call($name, $arguments)
@@ -61,3 +69,4 @@ class SignManager
         return $this;
     }
 }
+

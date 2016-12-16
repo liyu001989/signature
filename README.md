@@ -4,9 +4,23 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Stap
 
-- $signData = `['foo'=>'bar', 'a'=>'aa', 'b'=>'bb']`;
+- deep sort array
 
-- $signString = `'a=aa&b=bb&foo=bar'`;
+		$data = [
+		    'z' => 'z',
+		    'a' => [
+		        'c' => 'c',
+		        'b' => 'b',
+		        'a' => [
+		            'b' => 'b',
+		            'a' => 'a'
+		        ]
+		    ],
+		];
+
+		// after sort and convert
+
+		a={"a":{"a":"a","b":"b"},"b":"b","c":"c"}&z=z
 
 - use hash_hmac or rsa to sign this string。
 
@@ -29,11 +43,11 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 sign
 
-        $sign = Signature::setKey('foobar')->sign(['foo'=>'bar']);
+    $sign = Signature::setKey('foobar')->sign(['foo'=>'bar']);
  
 verify
 
-        Signature::setKey('foobar')->verify($sign, ['foo'=>'bar']); // true
+    Signature::setKey('foobar')->verify($sign, ['foo'=>'bar']); // true
 
 ## Todo
 
