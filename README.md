@@ -2,7 +2,7 @@
 
 Use HMAC or RSA to sign data for Laravel and lumen;
 
-## Stap
+## Step
 
 - deep sort array
 
@@ -26,15 +26,13 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Install
 
-1. composer require liyu/signature:dev-master
+1. composer require liyu/signature
 2. add ServiceProvider
 
         Liyu\Signature\ServiceProvider::class,
-
 3. add Facade
 
         'Signature' => Liyu\Signature\Facade\Signature::class,
-
 4. publish config
 
         php artisan vendor:publish --provider="Liyu\Signature\ServiceProvider"
