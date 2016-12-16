@@ -9,8 +9,6 @@ use Liyu\Signature\Signer\HMAC;
 
 class ServiceProvider extends LaravelServiceProvider
 {
-    protected $defer = true;
-
     public function boot()
     {
         $this->setupConfig();
