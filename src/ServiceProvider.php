@@ -5,7 +5,6 @@ namespace Liyu\Signature;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Laravel\Lumen\Application as LumenApplication;
-use Liyu\Signature\Signer\HMAC;
 
 class ServiceProvider extends LaravelServiceProvider
 {
@@ -33,25 +32,13 @@ class ServiceProvider extends LaravelServiceProvider
 
     public function register()
     {
-        $this->app->bind(['Liyu\\Signature\\SignManager' => 'signature'], function ($app) {
-            $signerName = config('signature.signer');
-            // TODO not good
-            switch ($signerName) {
-                case 'hmac':
-                default:
-                    $signer = new HMAC();
-                    if ($algo = config('signature'.$signerName)) {
-                        $signer->setAlgo($algo);
-                    }
-                break;
-            }
-
-            return new SignManager($signer);
+        $this->app->bind(['Liyu\\Signature\\SignatureManager' => 'signature'], function ($app) {
+            return new SignatureManager($app);
         });
     }
 
     public function providers()
     {
-        return ['signature', 'Liyu\\Signature\\SignManager'];
+        return ['signature', 'Liyu\\Signature\\SignatureManager'];
     }
 }

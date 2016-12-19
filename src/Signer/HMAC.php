@@ -4,7 +4,7 @@ namespace Liyu\Signature\Signer;
 
 use Liyu\Signature\Contracts\Signer;
 
-class HMAC implements Signer
+class HMAC extends AbstractSigner implements Signer
 {
     /**
      * key for sign.
@@ -20,10 +20,9 @@ class HMAC implements Signer
      */
     protected $algo;
 
-    public function __construct($key = null, $algo = 'sha1')
+    public function __construct(Array $config = [])
     {
-        $this->key = $key;
-        $this->algo = $algo;
+        $this->setConfig($config);
     }
 
     public function setKey($key)
@@ -47,31 +46,35 @@ class HMAC implements Signer
 
     public function getAlgo()
     {
-        return $this->algo;
+        return $this->algo ?: 'sha1';
     }
 
     /**
-     * make a sign for.
+     * make a signature.
      *
      * @param array $params
      *
      * @return string
      */
-    public function sign($signString)
+    public function sign($data)
     {
-        return base64_encode(hash_hmac($this->algo, $signString, $this->key));
+        $signString = $this->getSignString($data);
+
+        return base64_encode(hash_hmac($this->getAlgo(), $signString, $this->getKey()));
     }
 
     /**
-     * verify a sign.
+     * verify a signature.
      *
      * @param mixed $sign
      * @param array $params
      *
      * @return bool
      */
-    public function verify($sign, $signString)
+    public function verify($signature, $data)
     {
-        return $sign == $this->sign($signString);
+        $signString = $this->getSignString($data);
+
+        return $signature == $this->sign($signString);
     }
 }

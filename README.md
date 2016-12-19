@@ -4,7 +4,7 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Step
 
-- deep sort array
+- sort array and json_encode
 
 		$data = [
 		    'z' => 'z',
@@ -18,11 +18,12 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 		    ],
 		];
 
-		// after sort and convert
+		// sort and json_encode
 
-		a={"a":{"a":"a","b":"b"},"b":"b","c":"c"}&z=z
+        {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"z"}
 
-- use hash_hmac or rsa to sign this string。
+- hash_hmac or rsa sign string。
+- base64_encode
 
 ## Install
 
