@@ -42,15 +42,40 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 sign
 
-    $sign = Signature::setKey('foobar')->sign(['foo'=>'bar']);
+    $signature = Signature::sign('foobar');
+
+    $signature = Signature::setKey('foobar')->sign(['foo'=>'bar']);
+
+    $signature = Signature::signer('hmac')
+        ->setAlgo('sha256')
+        ->setKey('foobar')
+        ->sign(['foo'=>'bar']);
+
+    $signature = Signature::signer('rsa')
+        ->setPrivateKey('./private.pem')
+        ->sign(['foo'=>'bar']);
  
 verify
 
-    Signature::setKey('foobar')->verify($sign, ['foo'=>'bar']); // true
+    // true or false
+
+    Signature::verify($signature, ['foo'=>'bar']);
+
+    Signature::setKey('foobar')->verify($signature, ['foo'=>'bar']);
+
+    Signature::signer('hmac')
+        ->setAlgo('sha256')
+        ->setKey('foobar')
+        ->verify($sign, ['foo'=>'bar']);
+
+    Signature::signer('rsa')
+        ->setPublicKey('./public.pem')
+        ->verify($signature, ['foo'=>'bar']);
 
 ## Todo
 
-- rsa sign
+- phpdoc
+- unit test
 
 ## License
 
