@@ -8,11 +8,17 @@ use Laravel\Lumen\Application as LumenApplication;
 
 class ServiceProvider extends LaravelServiceProvider
 {
+    /**
+     * Bootstrap.
+     */
     public function boot()
     {
         $this->setupConfig();
     }
 
+    /**
+     * setupConfig.
+     */
     protected function setupConfig()
     {
         $source = realpath(__DIR__.'/../config/config.php');
@@ -30,6 +36,9 @@ class ServiceProvider extends LaravelServiceProvider
         $this->mergeConfigFrom($source, 'signature');
     }
 
+    /**
+     * Register the service provider.
+     */
     public function register()
     {
         $this->app->bind(['Liyu\\Signature\\SignatureManager' => 'signature'], function ($app) {
@@ -37,6 +46,11 @@ class ServiceProvider extends LaravelServiceProvider
         });
     }
 
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
     public function providers()
     {
         return ['signature', 'Liyu\\Signature\\SignatureManager'];

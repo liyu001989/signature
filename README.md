@@ -27,6 +27,8 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Install
 
+### laravel
+
 1. composer require liyu/signature
 2. add ServiceProvider
 
@@ -34,9 +36,31 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 3. add Facade
 
         'Signature' => Liyu\Signature\Facade\Signature::class,
-4. publish config
 
+### lumen
+
+- bootstrap/app.php
+
+        $app->register(Liyu\Signature\Facade\Signature::class);
+
+### config
+
+- you can use these in your ENV
+
+       SIGNATURE_HMAC_ALGO
+       SIGNATURE_HMAC_KEY
+
+       SIGNATURE_RSA_ALGO
+       SIGNATURE_RSA_PUBLIC_KEY
+       SIGNATURE_RSA_PRIVATE_KEY
+
+- if you want to use config
+
+        laravel
         php artisan vendor:publish --provider="Liyu\Signature\ServiceProvider"
+
+        lumen
+        copy vendor/liyu/signature/src/config/config.php config/signature.php
 
 ## Usage
 
@@ -59,7 +83,7 @@ verify
 
     // true or false
 
-    Signature::verify($signature, ['foo'=>'bar']);
+    Signature::verify($signature, 'foobar');
 
     Signature::setKey('foobar')->verify($signature, ['foo'=>'bar']);
 
@@ -74,7 +98,6 @@ verify
 
 ## Todo
 
-- phpdoc
 - unit test
 
 ## License

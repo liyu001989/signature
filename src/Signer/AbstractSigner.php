@@ -4,6 +4,13 @@ namespace Liyu\Signature\Signer;
 
 abstract class AbstractSigner
 {
+    /**
+     * convert sign data.
+     *
+     * @param mixed $signData
+     *
+     * @return string
+     */
     public function getSignString($signData)
     {
         if (!is_array($signData)) {
@@ -15,6 +22,13 @@ abstract class AbstractSigner
         return json_encode($params);
     }
 
+    /**
+     * Deep ksort array.
+     *
+     * @param mixed $params
+     *
+     * @return array
+     */
     protected function multiksort(&$params)
     {
         if (is_array($params)) {
@@ -26,6 +40,13 @@ abstract class AbstractSigner
         return $params;
     }
 
+    /**
+     * setConfig.
+     *
+     * @param array $config
+     *
+     * @return $this
+     */
     public function setConfig(array $config)
     {
         foreach ($config as $key => $value) {

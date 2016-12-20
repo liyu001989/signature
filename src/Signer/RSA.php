@@ -7,21 +7,43 @@ use Liyu\Signature\Contracts\Signer;
 class RSA extends AbstractSigner implements Signer
 {
     /**
-     * key for sign.
+     * public key for veirfy.
      *
-     * @var string
+     * @var mixed
      */
     protected $publicKey;
 
+    /**
+     * private key for sign.
+     *
+     * @var mixed
+     */
     protected $privateKey;
 
+    /**
+     * algo.
+     *
+     * @var string
+     */
     protected $algo;
 
+    /**
+     * Constructor.
+     *
+     * @param Array $config
+     */
     public function __construct(Array $config = [])
     {
         $this->setConfig($config);
     }
 
+    /**
+     * setPublicKey.
+     *
+     * @param mixed $publicKey
+     *
+     * @return $this
+     */
     public function setPublicKey($publicKey)
     {
         $this->publicKey = $publicKey;
@@ -29,6 +51,11 @@ class RSA extends AbstractSigner implements Signer
         return $this;
     }
 
+    /**
+     * getPublicKey.
+     *
+     * @return string
+     */
     public function getPublicKey()
     {
         if (is_file($this->publicKey)) {
@@ -38,6 +65,13 @@ class RSA extends AbstractSigner implements Signer
         return $this->publicKey;
     }
 
+    /**
+     * setPrivateKey.
+     *
+     * @param mixed $privateKey
+     *
+     * @return $this
+     */
     public function setPrivateKey($privateKey)
     {
         $this->privateKey = $privateKey;
@@ -45,6 +79,11 @@ class RSA extends AbstractSigner implements Signer
         return $this;
     }
 
+    /**
+     * getPrivateKey.
+     *
+     * @return string
+     */
     public function getPrivateKey()
     {
         if (is_file($this->privateKey)) {
@@ -54,6 +93,13 @@ class RSA extends AbstractSigner implements Signer
         return $this->privateKey;
     }
 
+    /**
+     * setAlgo.
+     *
+     * @param string $algo
+     *
+     * @return $this
+     */
     public function setAlgo($algo)
     {
         $this->algo = $algo;
@@ -61,6 +107,11 @@ class RSA extends AbstractSigner implements Signer
         return $this;
     }
 
+    /**
+     * getAlgo.
+     *
+     * @return string
+     */
     public function getAlgo()
     {
         return $this->algo ?: 'sha1';

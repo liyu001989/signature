@@ -25,6 +25,13 @@ class HMAC extends AbstractSigner implements Signer
         $this->setConfig($config);
     }
 
+    /**
+     * setKey.
+     *
+     * @param string $key
+     *
+     * @return $this
+     */
     public function setKey($key)
     {
         $this->key = $key;
@@ -32,11 +39,23 @@ class HMAC extends AbstractSigner implements Signer
         return $this;
     }
 
+    /**
+     * getKey.
+     *
+     * @return string
+     */
     public function getKey()
     {
         return $this->key;
     }
 
+    /**
+     * setAlgo.
+     *
+     * @param string $key
+     *
+     * @return $this
+     */
     public function setAlgo($key)
     {
         $this->key = $key;
@@ -44,6 +63,11 @@ class HMAC extends AbstractSigner implements Signer
         return $this;
     }
 
+    /**
+     * getAlgo.
+     *
+     * @return string
+     */
     public function getAlgo()
     {
         return $this->algo ?: 'sha1';

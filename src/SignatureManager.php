@@ -2,10 +2,10 @@
 
 namespace Liyu\Signature;
 
-use Liyu\Signature\Contracts\Signer;
 use InvalidArgumentException;
-use Liyu\Signature\Signer\HMAC;
 use Liyu\Signature\Signer\RSA;
+use Liyu\Signature\Signer\HMAC;
+use Liyu\Signature\Contracts\Signer;
 
 class SignatureManager
 {
@@ -61,6 +61,13 @@ class SignatureManager
         return $this->app['config']['signature.default'];
     }
 
+    /**
+     * resolve a signer.
+     *
+     * @param string $name
+     *
+     * @return \Liyu\Signature\Constracts\Signer
+     */
     protected function resolve($name)
     {
         $config = $this->getConfig($name);
@@ -78,21 +85,50 @@ class SignatureManager
         throw new InvalidArgumentException("Signer [{$name}] is not defined.");
     }
 
-    public function createHMACDriver($config)
+    /**
+     * create hmac signer.
+     *
+     * @param array $config
+     *
+     * @return \Liyu\Signature\Signer\HMAC
+     */
+    public function createHMACDriver(array $config)
     {
         return new HMAC($config);
     }
 
-    public function createRSADriver($config)
+    /**
+     * create rsa signer.
+     *
+     * @param array $config
+     *
+     * @return \Liyu\Signature\Signer\RSA
+     */
+    public function createRSADriver(array $config)
     {
         return new RSA($config);
     }
 
+    /**
+     * Get the signer configuration.
+     *
+     * @param string $name
+     *
+     * @return array
+     */
     protected function getConfig($name)
     {
         return $this->app['config']["signature.{$name}"];
     }
 
+    /**
+     * Dynamically call the default driver instance.
+     *
+     * @param string $method
+     * @param array  $parameters
+     *
+     * @return mixed
+     */
     public function __call($method, $parameters)
     {
         return $this->signer()->$method(...$parameters);
