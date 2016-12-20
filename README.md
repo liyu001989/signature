@@ -6,19 +6,19 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 - sort array and json_encode
 
-		$data = [
-		    'z' => 'z',
-		    'a' => [
-		        'c' => 'c',
-		        'b' => 'b',
-		        'a' => [
-		            'b' => 'b',
-		            'a' => 'a'
-		        ]
-		    ],
-		];
+        $data = [
+            'z' => 'z',
+            'a' => [
+                'c' => 'c',
+                'b' => 'b',
+                'a' => [
+                    'b' => 'b',
+                    'a' => 'a'
+                ]
+            ],
+        ];
 
-		// sort and json_encode
+        // sort and json_encode
 
         {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"z"}
 
@@ -47,12 +47,12 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 - you can use these in your ENV
 
-       SIGNATURE_HMAC_ALGO
-       SIGNATURE_HMAC_KEY
+        SIGNATURE_HMAC_ALGO
+        SIGNATURE_HMAC_KEY
 
-       SIGNATURE_RSA_ALGO
-       SIGNATURE_RSA_PUBLIC_KEY
-       SIGNATURE_RSA_PRIVATE_KEY
+        SIGNATURE_RSA_ALGO
+        SIGNATURE_RSA_PUBLIC_KEY
+        SIGNATURE_RSA_PRIVATE_KEY
 
 - if you want to use config
 
@@ -78,7 +78,7 @@ sign
     $signature = Signature::signer('rsa')
         ->setPrivateKey('./private.pem')
         ->sign(['foo'=>'bar']);
- 
+
 verify
 
     // true or false
