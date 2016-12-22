@@ -20,7 +20,7 @@ class HMAC extends AbstractSigner implements Signer
      */
     protected $algo;
 
-    public function __construct(Array $config = [])
+    public function __construct(array $config = [])
     {
         $this->setConfig($config);
     }

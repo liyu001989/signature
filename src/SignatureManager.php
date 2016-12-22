@@ -3,9 +3,9 @@
 namespace Liyu\Signature;
 
 use InvalidArgumentException;
-use Liyu\Signature\Signer\RSA;
-use Liyu\Signature\Signer\HMAC;
 use Liyu\Signature\Contracts\Signer;
+use Liyu\Signature\Signer\HMAC;
+use Liyu\Signature\Signer\RSA;
 
 class SignatureManager
 {
