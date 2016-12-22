@@ -3,9 +3,9 @@
 namespace Liyu\Signature;
 
 use InvalidArgumentException;
-use Liyu\Signature\Contracts\Signer;
-use Liyu\Signature\Signer\HMAC;
 use Liyu\Signature\Signer\RSA;
+use Liyu\Signature\Signer\HMAC;
+use Liyu\Signature\Contracts\Signer;
 
 class SignatureManager
 {
@@ -44,7 +44,7 @@ class SignatureManager
     {
         $name = $name ?: $this->getDefaultSigner();
 
-        if (!isset($this->signers[$name])) {
+        if (! isset($this->signers[$name])) {
             $this->signers[$name] = $this->resolve($name);
         }
 

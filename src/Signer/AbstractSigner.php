@@ -13,7 +13,7 @@ abstract class AbstractSigner
      */
     public function getSignString($signData)
     {
-        if (!is_array($signData)) {
+        if (! is_array($signData)) {
             return $signData;
         }
 
