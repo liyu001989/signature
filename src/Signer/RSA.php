@@ -30,9 +30,9 @@ class RSA extends AbstractSigner implements Signer
     /**
      * Constructor.
      *
-     * @param Array $config
+     * @param array $config
      */
-    public function __construct(Array $config = [])
+    public function __construct(array $config = [])
     {
         $this->setConfig($config);
     }

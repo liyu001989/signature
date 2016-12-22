@@ -36,10 +36,10 @@ abstract class AbstractSigner
                 $params = array_filter($params);
                 ksort($params);
                 array_walk($params, $deepSort);
-             } else {
+            } else {
                 // convert item to tring
-                $params = (string)$params;
-             }
+                $params = (string) $params;
+            }
 
             return $params;
         };
