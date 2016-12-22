@@ -17,7 +17,7 @@ abstract class AbstractSigner
             return $signData;
         }
 
-        $params = $this->multiksort($signData);
+        $params = $this->sort($signData);
 
         return json_encode($params);
     }
@@ -29,18 +29,22 @@ abstract class AbstractSigner
      *
      * @return array
      */
-    protected function multiksort(&$params)
+    protected function sort($params)
     {
-        if (is_array($params)) {
-            $params = array_filter($params);
-            ksort($params);
-            array_walk($params, [$this, 'multiksort']);
-        } else {
-            // convert item to tring
-            $params = (string)$params;
-        }
+        $deepSort = function (&$params) use (&$deepSort) {
+            if (is_array($params)) {
+                $params = array_filter($params);
+                ksort($params);
+                array_walk($params, $deepSort);
+             } else {
+                // convert item to tring
+                $params = (string)$params;
+             }
 
-        return $params;
+            return $params;
+        };
+
+        return $deepSort($params);
     }
 
     /**
