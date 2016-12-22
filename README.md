@@ -60,9 +60,11 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 - you can use these in your ENV
 
+        // default hmac algo and key
         SIGNATURE_HMAC_ALGO
         SIGNATURE_HMAC_KEY
 
+        // default rsa algo, public_key, private_key
         SIGNATURE_RSA_ALGO
         SIGNATURE_RSA_PUBLIC_KEY
         SIGNATURE_RSA_PRIVATE_KEY
@@ -112,7 +114,6 @@ verify
 ## Todo
 
 - unit test
-- middleware
 
 ## License
 

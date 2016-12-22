@@ -3,8 +3,8 @@
 return [
     // default signer
     'default' => 'hmac',
-    'hmac'    => [
-        'driver'  => 'HMAC',
+    'hmac' => [
+        'driver' => 'HMAC',
         'options' => [
             // default algo
             'algo' => env('SIGNATURE_HMAC_ALGO', 'sha1'),
@@ -13,7 +13,7 @@ return [
         ],
     ],
     'rsa' => [
-        'driver'  => 'RSA',
+        'driver' => 'RSA',
         'options' => [
             //default algo
             'algo' => env('SIGNATURE_RSA_ALGO', 'sha1'),
