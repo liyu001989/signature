@@ -2,9 +2,9 @@
 
 namespace Liyu\Signature;
 
+use Laravel\Lumen\Application as LumenApplication;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
 
 class ServiceProvider extends LaravelServiceProvider
 {
