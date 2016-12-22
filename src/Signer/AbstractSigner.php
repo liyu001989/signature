@@ -35,6 +35,9 @@ abstract class AbstractSigner
             $params = array_filter($params);
             ksort($params);
             array_walk($params, [$this, 'multiksort']);
+        } else {
+            // convert item to tring
+            $params = (string)$params;
         }
 
         return $params;

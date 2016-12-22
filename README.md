@@ -4,10 +4,11 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Step
 
-- sort array and json_encode
+- convert array data
 
+        // origin
         $data = [
-            'z' => 'z',
+            'z' => 1,
             'a' => [
                 'c' => 'c',
                 'b' => 'b',
@@ -18,9 +19,21 @@ Use HMAC or RSA to sign data for Laravel and lumen;
             ],
         ];
 
-        // sort and json_encode
+        // ksort and convert to string
+        $data = [
+            'a' => [
+                'a' => [
+                    'a' => 'a'
+                    'b' => 'b',
+                ]
+                'b' => 'b',
+                'c' => 'c',
+            ],
+            'z' => '1',
+        ];
 
-        {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"z"}
+        // json_encode
+        {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"1"}
 
 - hash_hmac or rsa sign string。
 - base64_encode
@@ -99,6 +112,7 @@ verify
 ## Todo
 
 - unit test
+- middleware
 
 ## License
 
