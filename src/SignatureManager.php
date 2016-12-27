@@ -2,6 +2,7 @@
 
 namespace Liyu\Signature;
 
+use Closure;
 use InvalidArgumentException;
 use Liyu\Signature\Signer\RSA;
 use Liyu\Signature\Signer\HMAC;
@@ -22,6 +23,13 @@ class SignatureManager
      * @var array
      */
     protected $signers = [];
+
+    /**
+     * The registered custom driver creators.
+     *
+     * @var array
+     */
+    protected $customCreators = [];
 
     /**
      * Constructor.
@@ -76,6 +84,10 @@ class SignatureManager
             throw new InvalidArgumentException("Signer [{$name}] is not defined.");
         }
 
+        if (isset($this->customCreators[$config['driver']])) {
+            return $this->callCustomCreator($config);
+        }
+
         $driverMethod = 'create'.ucfirst($config['driver']).'Driver';
 
         if (method_exists($this, $driverMethod)) {
@@ -83,6 +95,11 @@ class SignatureManager
         }
 
         throw new InvalidArgumentException("Signer [{$name}] is not defined.");
+    }
+
+    public function callCustomCreator(array $config)
+    {
+        return $this->customCreators[$config['driver']]($this->app, $config['options']);
     }
 
     /**
@@ -107,6 +124,13 @@ class SignatureManager
     public function createRSADriver(array $config)
     {
         return new RSA($config);
+    }
+
+    public function extend($driver, Closure $callback)
+    {
+        $this->customCreators[$driver] = $callback;
+
+        return $this;
     }
 
     /**
