@@ -52,13 +52,13 @@ class HMAC extends AbstractSigner implements Signer
     /**
      * setAlgo.
      *
-     * @param string $key
+     * @param string $algo
      *
      * @return $this
      */
-    public function setAlgo($key)
+    public function setAlgo($algo)
     {
-        $this->key = $key;
+        $this->algo = $algo;
 
         return $this;
     }
