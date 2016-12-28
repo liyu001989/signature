@@ -8,7 +8,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
     {
         $config = [
             'algo' => 'sha256',
-            'key' => '123456'
+            'key' => '123456',
         ];
         $hmac = new HMAC($config);
         $this->assertEquals($hmac->getKey(), 123456);
@@ -29,7 +29,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
     {
         $config = [
             'algo' => 'sha256',
-            'key' => '123456'
+            'key' => '123456',
         ];
         $hmac = new HMAC($config);
 
@@ -43,7 +43,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
             'b' => 'b',
             'c' => [
                 'd' => 'd',
-                'e' => 1
+                'e' => 1,
             ],
             'a' => 'a',
         ];
@@ -53,7 +53,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
             'c' => [
                 'd' => 'd',
                 'e' => '1',
-            ]
+            ],
         ]);
         $target = base64_encode(hash_hmac('sha256', $dataString, '123456'));
         $this->assertEquals($hmac->sign($data), $target);
@@ -63,7 +63,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
     {
         $config = [
             'algo' => 'sha256',
-            'key' => '123456'
+            'key' => '123456',
         ];
         $hmac = new HMAC($config);
 
@@ -83,7 +83,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
             'b' => 'b',
             'c' => [
                 'd' => 'd',
-                'e' => 1
+                'e' => 1,
             ],
             'a' => 'a',
         ];
@@ -93,7 +93,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
             'c' => [
                 'd' => 'd',
                 'e' => '1',
-            ]
+            ],
         ]);
         $target = base64_encode(hash_hmac('sha256', $dataString, '123456'));
         $ret = $hmac->verify($target, $data);
