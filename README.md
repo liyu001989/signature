@@ -7,41 +7,6 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 [![StyleCI](https://styleci.io/repos/76261016/shield)](https://styleci.io/repos/76261016096)
 [![License](https://poser.pugx.org/liyu/signature/license)](https://packagist.org/packages/liyu/signature)
 
-## Step
-
-- convert array data
-
-        // origin
-        $data = [
-            'z' => 1,
-            'a' => [
-                'c' => 'c',
-                'b' => 'b',
-                'a' => [
-                    'b' => 'b',
-                    'a' => 'a'
-                ]
-            ],
-        ];
-
-        // ksort and convert to string
-        $data = [
-            'a' => [
-                'a' => [
-                    'a' => 'a'
-                    'b' => 'b',
-                ]
-                'b' => 'b',
-                'c' => 'c',
-            ],
-            'z' => '1',
-        ];
-
-        // json_encode
-        {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"1"}
-
-- hash_hmac or rsa sign string。
-- base64_encode
 
 ## Install
 
@@ -115,6 +80,42 @@ verify
     Signature::signer('rsa')
         ->setPublicKey('./public.pem')
         ->verify($signature, ['foo'=>'bar']);
+
+## Sign Steps
+
+- convert array data
+
+        // origin
+        $data = [
+            'z' => 1,
+            'a' => [
+                'c' => 'c',
+                'b' => 'b',
+                'a' => [
+                    'b' => 'b',
+                    'a' => 'a'
+                ]
+            ],
+        ];
+
+        // ksort and convert to string
+        $data = [
+            'a' => [
+                'a' => [
+                    'a' => 'a'
+                    'b' => 'b',
+                ]
+                'b' => 'b',
+                'c' => 'c',
+            ],
+            'z' => '1',
+        ];
+
+        // json_encode
+        {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"1"}
+
+- hash_hmac or rsa sign string。
+- base64_encode
 
 ## Todo
 
