@@ -114,7 +114,11 @@ class RSA extends AbstractSigner implements Signer
      */
     public function getAlgo()
     {
-        return $this->algo ?: 'sha1';
+        if ($this->algo && in_array($this->algo, openssl_get_md_methods(true))) {
+            return $this->algo;
+        }
+
+        return 'sha1';
     }
 
     /**
