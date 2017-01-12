@@ -115,14 +115,14 @@ class RSATest extends PHPUnit_Framework_TestCase
 
     protected function generatePems()
     {
-        $new_key_pair = openssl_pkey_new(array(
-            "private_key_bits" => 2048,
-            "private_key_type" => OPENSSL_KEYTYPE_RSA,
-        ));
+        $new_key_pair = openssl_pkey_new([
+            'private_key_bits' => 2048,
+            'private_key_type' => OPENSSL_KEYTYPE_RSA,
+        ]);
         openssl_pkey_export($new_key_pair, $private_key_pem);
 
         $details = openssl_pkey_get_details($new_key_pair);
         $this->publicKey = $details['key'];
-        $this->privateKey  = $private_key_pem;
+        $this->privateKey = $private_key_pem;
     }
 }
