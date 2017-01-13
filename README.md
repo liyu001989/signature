@@ -5,7 +5,6 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 [![Latest Stable Version](https://poser.pugx.org/liyu/signature/version)](https://packagist.org/packages/liyu/signature)
 [![Total Downloads](https://poser.pugx.org/liyu/signature/downloads)](https://packagist.org/packages/liyu/signature)
 [![StyleCI](https://styleci.io/repos/76261016/shield)](https://styleci.io/repos/76261016096)
-[![License](https://poser.pugx.org/liyu/signature/license)](https://packagist.org/packages/liyu/signature)
 
 
 ## Install
