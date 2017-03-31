@@ -41,7 +41,7 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app->bind(['Liyu\\Signature\\SignatureManager' => 'signature'], function ($app) {
+        $this->app->bind('signature', function ($app) {
             return new SignatureManager($app);
         });
     }
