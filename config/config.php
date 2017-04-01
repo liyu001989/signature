@@ -2,7 +2,7 @@
 
 return [
     // default signer
-    'default' => 'hmac',
+    'default' => env('SIGNATURE_DRIVER', 'hmac'),
     'hmac' => [
         'driver' => 'HMAC',
         'options' => [
