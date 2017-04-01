@@ -2,6 +2,7 @@
 
 namespace Liyu\Signature;
 
+use Liyu\Signature\SignatureManager;
 use Laravel\Lumen\Application as LumenApplication;
 use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
@@ -41,9 +42,11 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function register()
     {
-        $this->app->bind(['Liyu\\Signature\\SignatureManager' => 'signature'], function ($app) {
+        $this->app->bind(SignatureManager::class, function ($app) {
             return new SignatureManager($app);
         });
+
+        $this->app->alias(SignatureManager::class, 'signature');
     }
 
     /**
@@ -53,6 +56,6 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function providers()
     {
-        return ['signature', 'Liyu\\Signature\\SignatureManager'];
+        return ['signature', SignatureManager::class];
     }
 }
