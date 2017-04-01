@@ -118,7 +118,7 @@ class RSA extends AbstractSigner implements Signer
             return $this->algo;
         }
 
-        return 'sha1';
+        return 'sha256';
     }
 
     /**

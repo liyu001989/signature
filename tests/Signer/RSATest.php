@@ -13,17 +13,17 @@ class RSATest extends PHPUnit_Framework_TestCase
         $config = [
             'publicKey' => 'public.key',
             'privateKey' => 'private.key',
-            'algo' => 'sha256',
+            'algo' => 'sha1',
         ];
 
         $rsa = new RSA($config);
-        $this->assertEquals($rsa->getAlgo(), 'sha256');
+        $this->assertEquals($rsa->getAlgo(), 'sha1');
         $this->assertEquals($rsa->getPublicKey(), 'public.key');
         $this->assertEquals($rsa->getPrivateKey(), 'private.key');
 
         // default
         $rsa = new RSA();
-        $this->assertEquals($rsa->getAlgo(), 'sha1');
+        $this->assertEquals($rsa->getAlgo(), 'sha256');
 
         // setConfig
         $rsa->setAlgo('md5');

@@ -11,7 +11,7 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ### laravel
 
-1. composer require liyu/signature
+1. `composer require liyu/signature`
 2. add ServiceProvider
 
         Liyu\Signature\ServiceProvider::class,
@@ -33,11 +33,11 @@ Use HMAC or RSA to sign data for Laravel and lumen;
         SIGNATURE_DRIVER
 
         // hmac algo and key
-        SIGNATURE_HMAC_ALGO
-        SIGNATURE_HMAC_KEY
+        SIGNATURE_HMAC_ALGO (default sha256)
+        SIGNATURE_HMAC_KEY (default null)
 
         // rsa algo, public_key, private_key
-        SIGNATURE_RSA_ALGO
+        SIGNATURE_RSA_ALGO (default sha256)
         SIGNATURE_RSA_PUBLIC_KEY
         SIGNATURE_RSA_PRIVATE_KEY
 
@@ -116,12 +116,13 @@ verify
         // json_encode
         {"a":{"a":{"a":"a","b":"b"},"b":"b","c":"c"},"z":"1"}
 
-- hash_hmac or rsa sign string。
-- base64_encode
+- sign string。
+ 
 
-## Todo
+        hmac  => hmac($algo, $convertData, $key);
+        // outputs lowercase hexits
 
-- unit test
+        rsa => base64_encode(openssl_sign_string);
 
 ## License
 

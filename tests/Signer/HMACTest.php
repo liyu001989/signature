@@ -7,16 +7,16 @@ class HMACTest extends PHPUnit_Framework_TestCase
     public function testSetConfig()
     {
         $config = [
-            'algo' => 'sha256',
+            'algo' => 'sha1',
             'key' => '123456',
         ];
         $hmac = new HMAC($config);
         $this->assertEquals($hmac->getKey(), 123456);
-        $this->assertEquals($hmac->getAlgo(), 'sha256');
+        $this->assertEquals($hmac->getAlgo(), 'sha1');
 
         // default
         $hmac = new HMAC();
-        $this->assertEquals($hmac->getAlgo(), 'sha1');
+        $this->assertEquals($hmac->getAlgo(), 'sha256');
 
         // set
         $hmac->setKey('654321');
@@ -35,7 +35,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
 
         // string
         $data = 'foobar';
-        $target = base64_encode(hash_hmac('sha256', $data, '123456'));
+        $target = hash_hmac('sha256', $data, '123456');
         $this->assertEquals($hmac->sign($data), $target);
 
         // array
@@ -55,7 +55,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
                 'e' => '1',
             ],
         ]);
-        $target = base64_encode(hash_hmac('sha256', $dataString, '123456'));
+        $target = hash_hmac('sha256', $dataString, '123456');
         $this->assertEquals($hmac->sign($data), $target);
     }
 
@@ -69,12 +69,12 @@ class HMACTest extends PHPUnit_Framework_TestCase
 
         // string
         $data = 'foobar';
-        $target = base64_encode(hash_hmac('sha256', $data, '123456'));
+        $target = hash_hmac('sha256', $data, '123456');
         $ret = $hmac->verify($target, $data);
         $this->assertTrue($ret);
 
         $data = 'fooba';
-        $target = base64_encode(hash_hmac('sha256', 'foobar', '123456'));
+        $target = hash_hmac('sha256', 'foobar', '123456');
         $ret = $hmac->verify($target, $data);
         $this->assertFalse($ret);
 
@@ -95,7 +95,7 @@ class HMACTest extends PHPUnit_Framework_TestCase
                 'e' => '1',
             ],
         ]);
-        $target = base64_encode(hash_hmac('sha256', $dataString, '123456'));
+        $target = hash_hmac('sha256', $dataString, '123456');
         $ret = $hmac->verify($target, $data);
         $this->assertTrue($ret);
     }

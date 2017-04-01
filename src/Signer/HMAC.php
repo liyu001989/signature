@@ -70,7 +70,7 @@ class HMAC extends AbstractSigner implements Signer
      */
     public function getAlgo()
     {
-        return $this->algo ?: 'sha1';
+        return $this->algo ?: 'sha256';
     }
 
     /**
@@ -84,7 +84,7 @@ class HMAC extends AbstractSigner implements Signer
     {
         $signString = $this->getSignString($data);
 
-        return base64_encode(hash_hmac($this->getAlgo(), $signString, $this->getKey()));
+        return hash_hmac($this->getAlgo(), $signString, $this->getKey());
     }
 
     /**
@@ -99,6 +99,7 @@ class HMAC extends AbstractSigner implements Signer
     {
         $signString = $this->getSignString($data);
 
-        return $signature == $this->sign($signString);
+        // http://php.net/manual/zh/function.hash-hmac.php#11143
+        return md5($signature) === md5($this->sign($signString));
     }
 }
