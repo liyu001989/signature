@@ -9,15 +9,11 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 
 ## Install
 
+For Laravel < 5.5, please use the tag [0.2.10](https://github.com/liyu001989/signature/tree/v0.2.10)
+
 ### laravel
 
-1. `composer require liyu/signature`
-2. add ServiceProvider
-
-        Liyu\Signature\ServiceProvider::class,
-3. add Facade
-
-        'Signature' => Liyu\Signature\Facade\Signature::class,
+`composer require liyu/signature`
 
 ### lumen
 
@@ -44,7 +40,7 @@ Use HMAC or RSA to sign data for Laravel and lumen;
 - if you want to use config
 
         laravel
-        php artisan vendor:publish --provider="Liyu\Signature\ServiceProvider"
+        php artisan vendor:publish
 
         lumen
         copy vendor/liyu/signature/src/config/config.php config/signature.php

@@ -21,7 +21,6 @@
             "Liyu\\Signature\\" : "src"
         }
     },
-    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
