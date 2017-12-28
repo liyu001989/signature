@@ -97,9 +97,7 @@ class HMAC extends AbstractSigner implements Signer
      */
     public function verify($signature, $data)
     {
-        $signString = $this->getSignString($data);
-
         // Timing attack safe string comparison
-        return hash_equals($signature, $this->sign($signString));
+        return hash_equals($signature, $this->sign($data));
     }
 }
