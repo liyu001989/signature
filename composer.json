@@ -9,8 +9,8 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/contracts": "5.5.*",
-        "illuminate/support": "5.5.*"
+        "illuminate/contracts": "5.5.* || ~5.5",
+        "illuminate/support": "5.5.* || ~5.5"
     },
     "require-dev": {
         "phpunit/phpunit": "5.*",
